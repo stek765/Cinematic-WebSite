@@ -1,7 +1,8 @@
 # Cinematic Scroll Animation
 
 **Live Demo:** [https://warm-crayon.surge.sh/](https://warm-crayon.surge.sh/)
-![Uploading Screenshot 2026-03-07 alle 13.31.13.png…]()
+
+<img width="1370" height="702" alt="Screenshot 2026-03-07 alle 13 31 13" src="https://github.com/user-attachments/assets/d29b4d1d-5fb7-48ad-893b-5a2817a1b3e0" />
 
 Una landing page interattiva basata su sequenze di immagini controllate dallo scroll. Il progetto utilizza HTML5 Canvas e JavaScript puro per renderizzare un'animazione fluida frame-by-frame legata alla posizione di scorrimento dell'utente.
 
