@@ -1,0 +1,633 @@
+:root {
+    --bg-color: #080808;
+    --text-color: #f7f7f7;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    /* Lighter glass */
+    --font-main: 'Montserrat', sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* Removed overscroll-behavior: none; */
+    /* Removed explicit scrollbar-width to test if scrollbar appears */
+    /* Ensure content flows */
+    min-height: 100vh;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* --- 1. Navigation --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    /* Let clicks pass through empty space */
+}
+
+.logo,
+.hamburger-menu {
+    pointer-events: auto;
+    /* Re-enable clicks on interactive elements */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #fff;
+    pointer-events: auto;
+    /* Active */
+}
+
+.logo .dot {
+    color: var(--accent-blue);
+    font-size: 2rem;
+    line-height: 0;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 1001;
+    pointer-events: auto;
+    /* Active */
+}
+
+.bar {
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.bar:nth-child(1) {
+    width: 100%;
+}
+
+.bar:nth-child(2) {
+    width: 60%;
+}
+
+.navbar:hover .bar:nth-child(2) {
+    width: 100%;
+}
+
+/* --- Menu Overlay --- */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #050505;
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: circle(0% at 95% 5%);
+    pointer-events: none;
+    transition: clip-path 0.8s var(--ease-out-expo);
+}
+
+.menu-overlay.open {
+    pointer-events: auto;
+    clip-path: circle(150% at 90% 10%);
+}
+
+.menu-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Links (wide) | Info (narrow) */
+    width: 80%;
+    max-width: 1200px;
+    gap: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+    transition-delay: 0.1s;
+}
+
+.menu-overlay.open .menu-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-column.links {
+    gap: 1rem;
+}
+
+.menu-column.info {
+    justify-content: center;
+    gap: 3rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 4rem;
+}
+
+.menu-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #555;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Links Style */
+.menu-column.links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 5vw;
+    line-height: 1.1;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    position: relative;
+    transition: color 0.3s;
+    width: fit-content;
+}
+
+.menu-column.links a:hover {
+    color: var(--accent-blue);
+}
+
+.num {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--accent-blue);
+    vertical-align: super;
+    margin-left: 10px;
+    opacity: 0.5;
+}
+
+/* Side Info Style */
+.info-block p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.socials {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.socials a {
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 700;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.socials a:hover {
+    opacity: 1;
+    color: var(--accent-blue);
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .menu-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .menu-column.info {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+    }
+
+    .menu-column.links a {
+        font-size: 3rem;
+    }
+}
+
+/* Nav Open State for Hamburger */
+.nav-open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.nav-open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-open .bar:after {
+    /* Virtual 3rd bar for cross */
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform: rotate(-45deg) translate(7px, -8px);
+}
+
+/* Wait, cleaner cross logic: just manipulate the two existing? */
+/* Let's trigger menu animation via JS class */
+
+
+/* --- 2. Canvas --- */
+.canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* --- 3. Scroll Content --- */
+#scroll-container {
+    height: 550vh;
+    /* Giving enough room */
+    position: relative;
+    z-index: 2;
+}
+
+.scroll-step {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    position: relative;
+    /* Context for absolute glows */
+    pointer-events: none;
+}
+
+/* Hero Modifications */
+.hero-step {
+    align-items: center;
+    text-align: center;
+}
+
+.content-wrapper.centered {
+    pointer-events: auto;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 8rem;
+    line-height: 0.9;
+    font-weight: 900;
+    margin: 1rem 0;
+    background: linear-gradient(180deg, #fff 20%, rgba(255, 255, 255, 0.4) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -4px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 3rem;
+}
+
+.overline {
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Wavy / Ambient Glows */
+.ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.6;
+    z-index: -1;
+    animation: pulse 6s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.2;
+        /* Reduced */
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0.4;
+        /* Reduced */
+    }
+}
+
+.glow-blue {
+    background: var(--accent-blue);
+    width: 60vw;
+    height: 60vw;
+    top: -20%;
+    left: 20%;
+}
+
+.glow-purple {
+    background: var(--accent-purple);
+    width: 40vw;
+    height: 40vw;
+    right: -10%;
+    top: 20%;
+}
+
+.glow-teal {
+    background: #2dd4bf;
+    width: 50vw;
+    height: 50vw;
+    left: -15%;
+    top: 10%;
+}
+
+.glow-pink {
+    background: #ec4899;
+    width: 40vw;
+    height: 40vw;
+    right: 5%;
+    bottom: -10%;
+}
+
+.glow-blue-large {
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+    width: 120vw;
+    height: 120vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.1;
+    /* Barely visible hint */
+}
+
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.6;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, #fff, transparent);
+}
+
+
+/* Content Cards (Features) */
+.feature-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.feature-left {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.glass-card {
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 3rem;
+    border-radius: 24px;
+    max-width: 500px;
+    pointer-events: auto;
+
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s var(--ease-out-expo);
+}
+
+.scroll-step.active .glass-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: -1.5rem;
+    left: 2rem;
+    z-index: -1;
+}
+
+h2 {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #ccc;
+}
+
+
+/* CTA Section */
+.cta-step {
+    justify-content: center;
+}
+
+/* Centers vertically */
+
+.big-impact {
+    font-size: 5rem;
+    line-height: 0.95;
+    text-align: center;
+    margin-bottom: 3rem;
+    /* Clean, modern, high contrast */
+    color: #ffffff;
+    letter-spacing: -2px;
+    font-weight: 800;
+    /* Subtle glow for legibility without heavy shadow */
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
+}
+
+.cta-button {
+    background: rgba(255, 255, 255, 0.08);
+    /* Frosted Glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /*border: 1px solid rgba(255, 255, 255, 0.4);*/
+    color: #fff;
+    padding: 1.5rem 4rem;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out-expo);
+    transform: perspective(1px) translateZ(0);
+    position: relative;
+    z-index: 10;
+}
+
+.cta-button:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-color: #fff;
+}
+
+.btn-price {
+    font-weight: 300;
+    opacity: 1;
+    /* Make it more visible */
+    border-left: 1px solid currentColor;
+    padding-left: 1.5rem;
+}
+
+/* Minimal Footer */
+.minimal-footer {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    /* Improved contrast */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    /* Ensures readability on any bg */
+    z-index: 10;
+    font-weight: 500;
+}
+
+/* Loading */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s var(--ease-out-expo);
+    /* Slower fade out for drama */
+    color: #fff;
+    /* Ensure text is visible */
+}
+
+.loader-wrap {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-circle {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid #fff;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    animation: spin 1.2s infinite cubic-bezier(0.5, 0.1, 0.4, 0.9);
+}
+
+.loader-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    display: none;
+    /* Force remove from flow/accessibility if needed, though z-index often enough */
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .big-impact {
+        font-size: 3rem;
+    }
+
+    .scroll-step {
+        padding: 0 5%;
+    }
+
+    .glass-card {
+        padding: 2rem;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

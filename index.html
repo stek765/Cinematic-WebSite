@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H2O Pro | The Future of Hydration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">H2O<span class="dot">.</span></div>
+        <div class="hamburger-menu" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Full Screen Menu Overlay -->
+    <div class="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-column links">
+                <span class="menu-label">Menu</span>
+                <a href="#">Products<span class="num">01</span></a>
+                <a href="#">Technology<span class="num">02</span></a>
+                <a href="#">Sustainability<span class="num">03</span></a>
+                <a href="#">Contact<span class="num">04</span></a>
+            </div>
+
+            <div class="menu-column info">
+                <div class="info-block">
+                    <span class="menu-label">Connect</span>
+                    <p>social@h2opro.inc</p>
+                    <div class="socials">
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">LN</a>
+                    </div>
+                </div>
+                <div class="info-block">
+                    <span class="menu-label">Office</span>
+                    <p>1220 Innovation Dr.<br>San Francisco, CA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The 3D Canvas Background -->
+    <div class="canvas-container">
+        <canvas id="product-canvas"></canvas>
+    </div>
+
+    <!-- Scroll Content -->
+    <div id="scroll-container">
+
+        <!-- SECTION 1: HERO -->
+        <section class="scroll-step hero-step">
+            <div class="ambient-glow glow-blue"></div>
+            <div class="content-wrapper centered">
+                <h4 class="overline">Precision Engineering</h4>
+                <h1 class="hero-title">Beyond<br>Liquid.</h1>
+                <p class="hero-subtitle">The ultimate insulated vessel for the modern explorer.</p>
+                <div class="scroll-indicator">
+                    <span>Scroll to explore</span>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: LOCK -->
+        <section class="scroll-step feature-right">
+            <div class="ambient-glow glow-purple"></div>
+            <div class="content-box glass-card">
+                <div class="step-number">01</div>
+                <h2>Zero Leakage.</h2>
+                <p>A aerospace-grade machined cap ensures your hydration stays exactly where it belongs. Inside.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: VACUUM -->
+        <section class="scroll-step feature-left">
+            <div class="ambient-glow glow-teal"></div>
+            <div class="content-box glass-card">
+                <div class="step-number">02</div>
+                <h2>Vacuum Core.</h2>
+                <p>Double-wall construction creates a perfect void. No air means no conduction. Cold stays glacial for
+                    48h.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: THERMAL -->
+        <section class="scroll-step feature-right">
+            <div class="ambient-glow glow-pink"></div>
+            <div class="content-box glass-card">
+                <div class="step-number">03</div>
+                <h2>Thermal Shield.</h2>
+                <p>Copper lining reflects radiant heat. It's not just a bottle, it's a thermodynamic system in your
+                    hand.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CTA -->
+        <section class="scroll-step cta-step">
+            <div class="ambient-glow glow-blue-large"></div>
+            <div class="content-wrapper centered">
+                <h2 class="big-impact">Own the<br>Performance.</h2>
+                <button class="cta-button">
+                    <span class="btn-text">Pre-Order Now</span>
+                    <span class="btn-price">$45.00</span>
+                </button>
+            </div>
+
+            <footer class="minimal-footer">
+                <p>&copy; 2026 H2O Pro Inc. Designed for Extremes.</p>
+            </footer>
+        </section>
+    </div>
+
+    <div class="loading-overlay">
+        <div class="loader-wrap">
+            <div class="loader-circle"></div>
+            <div class="loader-text" id="load-percent">0%</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
