@@ -1,0 +1,9 @@
+// Pubblica il sito su Cloudflare (Worker con file statici).
+// Aggiornare: npx wrangler deploy   (dalla cartella del progetto)
+// dist/ contiene solo pagina e frame WebP: i PNG originali (308 MB) in frames/ non vanno online.
+{
+  "name": "cinematic-scroll",
+  "compatibility_date": "2026-09-26",
+  "build": { "command": "rm -rf dist && mkdir dist && cp -R index.html style.css script.js frames-webp dist/ && find dist -name .DS_Store -delete" },
+  "assets": { "directory": "./dist" }
+}

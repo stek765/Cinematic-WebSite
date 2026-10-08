@@ -32,7 +32,7 @@ menuToggle.addEventListener("click", () => {
 // --- Configuration ---
 const frameCount = 240;
 const currentFrame = index => (
-    `./frames/ezgif-frame-${index.toString().padStart(3, '0')}.png`
+    `./frames-webp/ezgif-frame-${index.toString().padStart(3, '0')}.webp`
 );
 
 let images = [];
